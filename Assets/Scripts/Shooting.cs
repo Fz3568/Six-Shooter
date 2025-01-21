@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Shooting : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class Shooting : MonoBehaviour
     public float Recoil;
     public float Kickback;
     public int maxAmmo;
-    public bool Automatic;
+    public bool isAutomatic;
     public int shots;
 
     public Transform FirePoint;
@@ -29,15 +30,22 @@ public class Shooting : MonoBehaviour
 
     int LoadedAmmo;
     float shootTime;
-    bool ReloadState;
+    private bool isInReloadPrep; //renamed this to make it more consistent with internal control action naming, used to be called "ReloadState"
     public float NormalSpeed;
     public Animator animator;
 
     public PlayerBaseScript Base;
+    
+    [SerializeField] PlayerInput playerInput;
+    private float isHoldingDownFire;// this value is derived from:
+                                    // isHoldingDownFire = playerInput.actions["Fire"].ReadValue<float>().
+                                    // It will spit out either 0.0 (not pressed down) or 1.0 (pressed down) BUTTONS ONLY, JOYSTICK WILL PRODUCE NUMBER FROM 0.0 TO 1.0 DEPENDS ON TRAVEL DISTANCE
+                                    // Basically a bool but with no true or false
+                                    // There's also a .performed action type, not sure difference between the two, documentation did not make it clear
 
     private void OnEnable()
     {
-        ReloadState = false;
+        isInReloadPrep = false;
     }
 
     private void OnDisable()
@@ -54,7 +62,7 @@ public class Shooting : MonoBehaviour
         LoadedAmmo = maxAmmo;
         shootTime = Time.time;
         LoadBullet = gameObject.GetComponent<AudioSource>();
-        ReloadState = false;
+        isInReloadPrep = false;
         animator = gameObject.GetComponent<Animator>();
         Base = gameObject.GetComponent<PlayerBaseScript>();
     }
@@ -63,12 +71,13 @@ public class Shooting : MonoBehaviour
     void Update()
     {
         ReloadAnim.SetInteger("Ammo", LoadedAmmo);
+
+        isHoldingDownFire = playerInput.actions["Fire"].ReadValue<float>();
         
-        
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (playerInput.actions["Reload Prep"].triggered)
         {
-            ReloadState = !ReloadState;
-            if (ReloadState)
+            isInReloadPrep = !isInReloadPrep;
+            if (isInReloadPrep)
             {
                 ReloadOpen.Play();
             }
@@ -77,26 +86,27 @@ public class Shooting : MonoBehaviour
                 ReloadClose.Play();
             }
         }
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && ReloadState == false)
-        {
-            ReloadState = true;
-            ReloadOpen.Play();
-        }
-        if (Input.GetAxis("Mouse ScrollWheel") < 0 && ReloadState == true)
-        {
-            ReloadState = false;
-            ReloadClose.Play();
-        }
+        // tbh makes no sense
+        // if (Input.GetAxis("Mouse ScrollWheel") > 0 && ReloadState == false)
+        // {
+        //     ReloadState = true;
+        //     ReloadOpen.Play();
+        // }
+        // if (Input.GetAxis("Mouse ScrollWheel") < 0 && ReloadState == true)
+        // {
+        //     ReloadState = false;
+        //     ReloadClose.Play();
+        // } 
 
 
-        if (ReloadState)
+        if (isInReloadPrep)
         {
             animator.SetBool("IsReloading", true);
             Base.speed = NormalSpeed * 0.6f;
             
-            if (Automatic == false)
+            if (!isAutomatic)
             {
-                if (Input.GetKeyDown(KeyCode.R) && LoadedAmmo < maxAmmo)
+                if (playerInput.actions["Reload"].triggered && LoadedAmmo < maxAmmo)
                 {
                     LoadBullet.volume = 0.2f;
                     LoadBullet.pitch = 1.2f;
@@ -104,9 +114,9 @@ public class Shooting : MonoBehaviour
                     LoadBullet.Play();
                 }
             }
-            else if (Automatic == true)
+            else if (isAutomatic)
             {
-                if (Input.GetKeyDown(KeyCode.R) && LoadedAmmo < maxAmmo)
+                if (playerInput.actions["Reload"].triggered && LoadedAmmo < maxAmmo)
                 {
                     LoadBullet.volume = 0.2f;
                     LoadBullet.pitch = 1.2f;
@@ -126,14 +136,15 @@ public class Shooting : MonoBehaviour
                 Base.speed = NormalSpeed;
             }
 
-            if (Input.GetButtonDown("Fire1") && LoadedAmmo == 0)
+            if (playerInput.actions["Fire"].triggered && LoadedAmmo == 0)
             {
                 LoadBullet.pitch = 2f;
                 LoadBullet.volume = 0.1f;
                 LoadBullet.Play();
             }
 
-            if (((Input.GetButtonDown("Fire1") && Automatic == false) || (Input.GetButton("Fire1") && Automatic == true)) && LoadedAmmo > 0 && shootTime < Time.time)
+            if (((playerInput.actions["Fire"].triggered && !isAutomatic) ||
+                 (isHoldingDownFire == 1.0f && isAutomatic)) && LoadedAmmo > 0 && shootTime < Time.time)
             {
                 Shoot();
             }
