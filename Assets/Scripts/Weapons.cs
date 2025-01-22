@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Weapons : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class Weapons : MonoBehaviour
     public int Equip;
     public TextMesh EquipUI;
     public Animator PlayerAnim;
+
+    [SerializeField] PlayerInput playerControllerInput; //this is only intended for checking player controller input, hence the naming
+    
     void Start()
     {
         PlayerAnim = GetComponent<Animator>();
@@ -17,18 +21,37 @@ public class Weapons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //this is certainly one way of doing it
-        //todo: add controller support, so that instead of picking a weapon, you cycle thru them with A on gamepad
-        for (int i = 0; i <= 9; i++)
+        if (!PlayerBaseScript.isControllerConnected)
         {
-            if (i <= Guns.Length && i > 0)
+            for (int i = 0; i <= 9; i++)
             {
-                if (Input.GetKeyDown(i.ToString()))
+                if (i <= Guns.Length && i > 0)
                 {
-                    Equip = i-1;
+                    if (Keyboard.current[Key.Digit1 + (i - 1)].wasPressedThisFrame) //this checks for keyboard input directly, no rebind
+                    {
+                        Equip = i - 1;
+
+                    }
                 }
             }
         }
+        if (PlayerBaseScript.isControllerConnected)
+        {
+            int i = Equip; // Start from the currently equipped weapon
+            if (playerControllerInput.actions["Weapon Cycle"].triggered)
+            {
+                i++;
+                if (i >= Guns.Length)
+                {
+                    Equip = 0; // Cycle back to the first weapon
+                }
+                else
+                {
+                    Equip = i;
+                }
+            }
+        }
+        
 
         for (int i = 0; i < Guns.Length; i++)
         {

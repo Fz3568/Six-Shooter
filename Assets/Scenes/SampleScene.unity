@@ -1413,6 +1413,7 @@ MonoBehaviour:
   Equip: 0
   EquipUI: {fileID: 975046399}
   PlayerAnim: {fileID: 0}
+  playerControllerInput: {fileID: 1183566628}
 --- !u!114 &1183566626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2174,6 +2175,14 @@ MonoBehaviour:
       m_Id: 10b8c9f0-6525-45a4-a129-4601c0294c41
       m_Path: <Keyboard>/escape
       m_Interactions: Tap
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pause Game
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 66f22574-9c78-4f20-a054-71e9709caee0
+      m_Path: <Gamepad>/start
+      m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Pause Game
@@ -7246,7 +7255,7 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1183566616}
   - {fileID: 1715481507}
-  - {fileID: 1917899226}
   - {fileID: 318982156}
   - {fileID: 39454568}
   - {fileID: 2048884060}
+  - {fileID: 1917899226}

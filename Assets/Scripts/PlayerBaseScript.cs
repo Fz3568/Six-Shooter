@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
@@ -31,10 +32,15 @@ public class PlayerBaseScript : MonoBehaviour
     Rigidbody2D rb;
 
     [SerializeField] PlayerInput playerInput;
-    
-    
-    
-    
+
+    public static bool isControllerConnected;
+
+    private void Awake()
+    {
+        checkForController();
+    }
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -46,6 +52,8 @@ public class PlayerBaseScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        checkForController();
+        
         MousePos = cam.ScreenToWorldPoint(Input.mousePosition);   // there's a "Look" thing that keeps track of mouse position in the new input system,
                                                                     // not sure how it works, will figure out, maybe
 
@@ -79,7 +87,7 @@ public class PlayerBaseScript : MonoBehaviour
         kbf = 0;
         
         
-        if (Gamepad.current != null)
+        if (isControllerConnected)
         {
             //me no understand maths works how
             //so basically when lookdirection is at 0, rotation of 0 degrees is staight up, which is fine
@@ -98,7 +106,7 @@ public class PlayerBaseScript : MonoBehaviour
                 rb.rotation = angle;
             }
         }
-        else if (Gamepad.current == null)
+        else if (!isControllerConnected)
         {
             Vector2 LookDir = rb.position - MousePos;
             float angle = Mathf.Atan2(LookDir.y, LookDir.x) * Mathf.Rad2Deg + 90f;
@@ -112,6 +120,16 @@ public class PlayerBaseScript : MonoBehaviour
     {
         kbf = -kb;
     }
-    
-    
+
+    private void checkForController()
+    {
+        if (Gamepad.current != null)
+        {
+            isControllerConnected = true;
+        }
+        else
+        {
+            isControllerConnected = false;
+        }
+    }
 }
