@@ -17,6 +17,8 @@ public class Weapons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //this is certainly one way of doing it
+        //todo: add controller support, so that instead of picking a weapon, you cycle thru them with A on gamepad
         for (int i = 0; i <= 9; i++)
         {
             if (i <= Guns.Length && i > 0)

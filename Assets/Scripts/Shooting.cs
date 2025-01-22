@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class Shooting : MonoBehaviour
 {
+    //we can probably get away with using polymorphism right, by creating two masterclasses of "single action weapon" and "automatic weapon"
+    
     // Start is called before the first frame update
     public string GunName;
     public float BulletForce;
@@ -74,6 +76,7 @@ public class Shooting : MonoBehaviour
 
         isHoldingDownFire = playerInput.actions["Fire"].ReadValue<float>();
         
+        
         if (playerInput.actions["Reload Prep"].triggered)
         {
             isInReloadPrep = !isInReloadPrep;
@@ -86,6 +89,7 @@ public class Shooting : MonoBehaviour
                 ReloadClose.Play();
             }
         }
+        
         // tbh makes no sense
         // if (Input.GetAxis("Mouse ScrollWheel") > 0 && ReloadState == false)
         // {
@@ -104,7 +108,7 @@ public class Shooting : MonoBehaviour
             animator.SetBool("IsReloading", true);
             Base.speed = NormalSpeed * 0.6f;
             
-            if (!isAutomatic)
+            if (isAutomatic == false)
             {
                 if (playerInput.actions["Reload"].triggered && LoadedAmmo < maxAmmo)
                 {
@@ -114,7 +118,7 @@ public class Shooting : MonoBehaviour
                     LoadBullet.Play();
                 }
             }
-            else if (isAutomatic)
+            else if (isAutomatic == true)
             {
                 if (playerInput.actions["Reload"].triggered && LoadedAmmo < maxAmmo)
                 {
@@ -143,8 +147,7 @@ public class Shooting : MonoBehaviour
                 LoadBullet.Play();
             }
 
-            if (((playerInput.actions["Fire"].triggered && !isAutomatic) ||
-                 (isHoldingDownFire == 1.0f && isAutomatic)) && LoadedAmmo > 0 && shootTime < Time.time)
+            if (((playerInput.actions["Fire"].triggered && !isAutomatic) || (isHoldingDownFire > 0.0f && isAutomatic)) && LoadedAmmo > 0 && shootTime < Time.time)
             {
                 Shoot();
             }
@@ -154,7 +157,7 @@ public class Shooting : MonoBehaviour
         
     }
 
-    public void Shoot()
+    private void Shoot()
     {
         for (int i = 1; i <= shots; i++)
         {

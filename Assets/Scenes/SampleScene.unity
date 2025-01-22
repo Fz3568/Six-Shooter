@@ -1432,7 +1432,7 @@ MonoBehaviour:
   Recoil: 1.2
   Kickback: 0.06
   maxAmmo: 30
-  isAutomatic: 0
+  isAutomatic: 1
   shots: 1
   FirePoint: {fileID: 8086085404473892990}
   bulletPrefab: {fileID: 7017421037308918601, guid: 8180cd4f586615b4fb719efd5f545353, type: 3}
