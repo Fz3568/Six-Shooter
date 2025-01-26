@@ -35,6 +35,8 @@ public class PlayerBaseScript : MonoBehaviour
 
     public static bool isControllerConnected;
 
+    private float hp;//should we put health here?
+
     private void Awake()
     {
         checkForController();
@@ -131,5 +133,10 @@ public class PlayerBaseScript : MonoBehaviour
         {
             isControllerConnected = false;
         }
+    }
+
+    public float getPlayerHealth()
+    {
+        return hp;
     }
 }

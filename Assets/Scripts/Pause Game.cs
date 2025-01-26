@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 
 public class PauseGame : MonoBehaviour
 {
+    //todo
+    //add pause menu once game is mostly done
     [SerializeField] private InputAction pauseGame;
     [SerializeField] private Canvas canvas;//pause menu gose here
    

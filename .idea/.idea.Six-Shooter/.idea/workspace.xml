@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f751a052-e1f1-4988-a2f1-4ed7dc87ef8d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Six-Shooter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Six-Shooter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/Input System/1.7.0/Rebinding UI/RebindUISampleActions.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/Input System/1.7.0/Rebinding UI/RebindUISampleActions.inputactions" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pause Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pause Game.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerBaseScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerBaseScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,14 +18,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa36564.20263.rartemp/Weapons.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../BubbleBobble/Assets/Scripts/Dino.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../BubbleBobble/Assets/Scripts/Shot.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../BubbleBobble/Assets/Title Screen/MainMenuController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../GDW Tutorial car game/Assets/Scripts/Lap Counter.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../GDW Tutorial car game/Assets/Scripts/Timer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Pause Game.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Scene Manager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Weapons alternate.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.7.0/InputSystem/Actions/InputAction.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
@@ -107,6 +105,8 @@
       <workItem from="1737506681384" duration="6237000" />
       <workItem from="1737513443791" duration="390000" />
       <workItem from="1737580799904" duration="5229000" />
+      <workItem from="1737913397934" duration="637000" />
+      <workItem from="1737914107211" duration="498000" />
     </task>
     <servers />
   </component>
