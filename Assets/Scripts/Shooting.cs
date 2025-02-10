@@ -56,7 +56,6 @@ public class Shooting : MonoBehaviour
         {
             ReloadUI.GetComponent<RectTransform>().position = new Vector2(ReloadUIpos.transform.position.x, -20 + ReloadUIpos.transform.position.y);
         }
-        
     }
 
     private void Start()
@@ -108,7 +107,7 @@ public class Shooting : MonoBehaviour
             animator.SetBool("IsReloading", true);
             Base.speed = NormalSpeed * 0.6f;
             
-            if (isAutomatic == false)
+            if (!isAutomatic)
             {
                 if (playerInput.actions["Reload"].triggered && LoadedAmmo < maxAmmo)
                 {
@@ -118,7 +117,7 @@ public class Shooting : MonoBehaviour
                     LoadBullet.Play();
                 }
             }
-            else if (isAutomatic == true)
+            else if (isAutomatic)
             {
                 if (playerInput.actions["Reload"].triggered && LoadedAmmo < maxAmmo)
                 {

@@ -29,7 +29,6 @@ public class PauseGame : MonoBehaviour
     void Start()
     {
         pauseGame.performed += _ => Pause();
-        
     }
 
     private void Pause()

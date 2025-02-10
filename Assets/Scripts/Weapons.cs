@@ -51,7 +51,6 @@ public class Weapons : MonoBehaviour
                 }
             }
         }
-        
 
         for (int i = 0; i < Guns.Length; i++)
         {
@@ -100,7 +99,7 @@ public class Weapons : MonoBehaviour
         {
             PlayerAnim.SetBool("RifleEquip", false);
         }
-
+        
         EquipUI.text = ($"{Equip + 1}- {Guns[Equip].GunName}");
 
     }

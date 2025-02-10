@@ -67,8 +67,8 @@ public class PlayerBaseScript : MonoBehaviour
             DodgeStop = Time.time + DodgeDuration;
             gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
             DashSound.Play();
-
         }
+        
         if (IsDodging == true && DodgeStop < Time.time)
         {
             IsDodging = false;
@@ -96,8 +96,10 @@ public class PlayerBaseScript : MonoBehaviour
             //but as soon as there's input from stick, direction gets all messed up unless you rotate them -90 degrees
             //so I just made it so that when there's no input, it undose the -90 degrees adjustment
             //this way of structuring code also means it supports hot swap on input devices
+            
             Vector2 lookDirection = playerInput.actions["Look"].ReadValue<Vector2>(); //this spits out a normalized directional vector, thanks unity
             float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f; // Converts to degrees
+            
             if (lookDirection.x == 0.00f && lookDirection.y == 0.00f)    
             {
                 angle += 90f;
@@ -114,8 +116,6 @@ public class PlayerBaseScript : MonoBehaviour
             float angle = Mathf.Atan2(LookDir.y, LookDir.x) * Mathf.Rad2Deg + 90f;
             rb.rotation = angle;
         }
-        
-        
     }
 
     public void Kickback(float kb)
