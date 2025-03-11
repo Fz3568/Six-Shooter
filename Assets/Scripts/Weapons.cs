@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class Weapons : MonoBehaviour
 {
     public Shooting[] Guns = new Shooting[2];
     public int Equip;
-    public TextMesh EquipUI;
+    public Text EquipUI;
     public Animator PlayerAnim;
 
     [SerializeField] PlayerInput playerControllerInput; //this is only intended for checking player controller input, hence the naming

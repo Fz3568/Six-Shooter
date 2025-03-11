@@ -128,8 +128,7 @@ public class Shooting : MonoBehaviour
                 }
             }
             
-
-            ReloadUI.GetComponent<Rigidbody2D>().position = ReloadUIpos.transform.position;
+            ReloadUI.GetComponent<RectTransform>().position = ReloadUIpos.transform.position;
         }
         else
         {
