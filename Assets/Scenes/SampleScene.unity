@@ -22713,7 +22713,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1917899225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22791,7 +22791,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2048884059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22829,7 +22829,6 @@ MonoBehaviour:
       m_Action: Pause Game
       m_Flags: 0
     m_Flags: 0
-  canvas: {fileID: 0}
   playerInput: {fileID: 1183566628}
 --- !u!4 &2048884060
 Transform:
@@ -27915,8 +27914,8 @@ SceneRoots:
   - {fileID: 318982156}
   - {fileID: 39454568}
   - {fileID: 2048884060}
-  - {fileID: 1917899226}
   - {fileID: 1299495107}
   - {fileID: 243371679}
   - {fileID: 269266125}
   - {fileID: 1177849303}
+  - {fileID: 1917899226}
